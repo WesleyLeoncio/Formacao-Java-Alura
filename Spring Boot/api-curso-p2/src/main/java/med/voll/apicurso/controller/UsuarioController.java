@@ -18,11 +18,11 @@ public class UsuarioController {
 
     @Autowired
     private AuthenticationManager manager;
-
     @PostMapping("/login")
     public ResponseEntity efetuarLogin(@RequestBody @Valid UserRequest userLogin) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userLogin.login(), userLogin.senha());
         Authentication authentication = manager.authenticate(token);
         return ResponseEntity.ok().build();
     }
+
 }

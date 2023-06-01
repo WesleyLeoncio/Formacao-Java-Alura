@@ -1,4 +1,11 @@
 package med.voll.apicurso.model.usuario.request;
 
-public record UserRequest(String login, String senha) {
+import jakarta.validation.constraints.NotBlank;
+
+public record UserRequest(
+        @NotBlank
+        String login,
+        @NotBlank
+        String senha
+) {
 }
