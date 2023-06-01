@@ -1,4 +1,4 @@
-package med.voll.apicurso.model;
+package med.voll.apicurso.model.medico;
 
 public enum Especialidade {
     ORTOPEDIA,

@@ -1,7 +1,7 @@
-package med.voll.apicurso.model.response;
+package med.voll.apicurso.model.medico.response;
 
-import med.voll.apicurso.model.Especialidade;
-import med.voll.apicurso.model.Medico;
+import med.voll.apicurso.model.medico.Especialidade;
+import med.voll.apicurso.model.medico.entity.Medico;
 
 public record MedicoResponse(Long id,String nome, String email, String crm, Especialidade especialidade) {
     public MedicoResponse(Medico medico) {

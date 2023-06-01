@@ -1,10 +1,12 @@
-package med.voll.apicurso.model;
+package med.voll.apicurso.model.medico.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import med.voll.apicurso.model.request.medico.MedicoCreatRequest;
-import med.voll.apicurso.model.request.medico.MedicoEditRequest;
+import med.voll.apicurso.model.endereco.entity.Endereco;
+import med.voll.apicurso.model.medico.Especialidade;
+import med.voll.apicurso.model.medico.request.MedicoCreatRequest;
+import med.voll.apicurso.model.medico.request.MedicoEditRequest;
 
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")

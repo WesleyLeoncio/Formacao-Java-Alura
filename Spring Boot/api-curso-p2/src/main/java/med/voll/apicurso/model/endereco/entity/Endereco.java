@@ -1,7 +1,7 @@
-package med.voll.apicurso.model;
+package med.voll.apicurso.model.endereco.entity;
 
 import jakarta.persistence.Embeddable;
-import med.voll.apicurso.model.request.endereco.EnderecoRequest;
+import med.voll.apicurso.model.endereco.request.EnderecoRequest;
 
 
 @Embeddable

@@ -1,4 +1,4 @@
-package med.voll.apicurso.model.request.endereco;
+package med.voll.apicurso.model.endereco.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
