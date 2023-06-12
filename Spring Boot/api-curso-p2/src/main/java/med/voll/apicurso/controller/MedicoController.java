@@ -43,7 +43,6 @@ public class MedicoController {
         return ResponseEntity.ok(medicoResponsePage);
     }
 
-    //TODO BUGADO N RETORNA O ENDEREÇO
     @PutMapping
     @Transactional
     public ResponseEntity<MedicoDetalhamentoResponse> atualizar(@RequestBody @Valid MedicoEditRequest medicoEditRequest){
