@@ -3,7 +3,7 @@ CREATE TABLE consultas
     id            SERIAL       NOT NULL,
     medico_id     INTEGER      NOT NULL,
     paciente_id   INTEGER      NOT NULL,
-    data          DATETIME     NOT NULL,
+    data          TIMESTAMP    NOT NULL,
 
     CONSTRAINT pk_consulta
       PRIMARY KEY (id),
