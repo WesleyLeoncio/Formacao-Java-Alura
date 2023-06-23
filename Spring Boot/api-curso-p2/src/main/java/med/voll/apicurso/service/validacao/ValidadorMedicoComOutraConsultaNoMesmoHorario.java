@@ -7,17 +7,19 @@ import med.voll.apicurso.repository.ConsultaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
-public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorAgendamentoDeConsulta {
+//TODO TESTAR
 
-    @Autowired
-    private ConsultaRepository repository;
-
-    public void validar(ConsultaAgendamentoRequest dados) {
-        boolean medicoPossuiOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(), dados.data());
-        if (medicoPossuiOutraConsultaNoMesmoHorario) {
-            throw new ValidacaoException("Médico já possui outra consulta agendada nesse mesmo horário");
-        }
-    }
-
-}
+//@Service
+//public class ValidadorMedicoComOutraConsultaNoMesmoHorario implements ValidadorAgendamentoDeConsulta {
+//
+//    @Autowired
+//    private ConsultaRepository repository;
+//
+//    public void validar(ConsultaAgendamentoRequest dados) {
+//        boolean medicoPossuiOutraConsultaNoMesmoHorario = repository.existsByMedicoIdAndDataAndMotivoCancelamentoIsNull(dados.idMedico(), dados.data());
+//        if (medicoPossuiOutraConsultaNoMesmoHorario) {
+//            throw new ValidacaoException("Médico já possui outra consulta agendada nesse mesmo horário");
+//        }
+//    }
+//
+//}
