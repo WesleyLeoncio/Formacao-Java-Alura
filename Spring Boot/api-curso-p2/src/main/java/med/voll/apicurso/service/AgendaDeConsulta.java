@@ -1,9 +1,12 @@
 package med.voll.apicurso.service;
 
 import med.voll.apicurso.infra.exceptions.ValidacaoException;
-import med.voll.apicurso.model.agendamento.ValidadorAgendamentoDeConsulta;
+import med.voll.apicurso.model.consulta.interfaces.ValidadorAgendamentoDeConsulta;
 import med.voll.apicurso.model.consulta.entity.Consulta;
+import med.voll.apicurso.model.consulta.interfaces.ValidadorCancelamentoConsulta;
 import med.voll.apicurso.model.consulta.request.ConsultaAgendamentoRequest;
+import med.voll.apicurso.model.consulta.request.ConsultaCancelarRequest;
+import med.voll.apicurso.model.consulta.response.ConsultaCancelarResponse;
 import med.voll.apicurso.model.consulta.response.ConsultaDetalhamentoResponse;
 import med.voll.apicurso.model.medico.entity.Medico;
 import med.voll.apicurso.model.paciente.entity.Paciente;
@@ -28,9 +31,12 @@ public class AgendaDeConsulta {
     private PacienteRepository pacienteRepository;
 
     @Autowired
-    private List<ValidadorAgendamentoDeConsulta> validadores;
+    private List<ValidadorAgendamentoDeConsulta> validadoresAgendamento;
 
-    public ConsultaDetalhamentoResponse agendar(ConsultaAgendamentoRequest dados){
+    @Autowired
+    private List<ValidadorCancelamentoConsulta> validadorCancelamentoConsultas;
+
+    public ConsultaDetalhamentoResponse agendar(ConsultaAgendamentoRequest dados) {
         if (!pacienteRepository.existsById(dados.idPaciente())) {
             throw new ValidacaoException("Id do paciente informado não existe!");
         }
@@ -38,7 +44,7 @@ public class AgendaDeConsulta {
             throw new ValidacaoException("Id do médico informado não existe!");
         }
 
-        validadores.forEach(v -> v.validar(dados));
+        validadoresAgendamento.forEach(v -> v.validar(dados));
 
         Paciente paciente = pacienteRepository.getReferenceById(dados.idPaciente());
         Medico medico = escolherMedico(dados);
@@ -46,9 +52,27 @@ public class AgendaDeConsulta {
             throw new ValidacaoException("Não existe médico disponível nessa data!");
         }
 
-        Consulta consulta = new Consulta(null,medico,paciente,dados.data());
+        Consulta consulta = new Consulta(null, medico, paciente, dados.data());
         consultaRepository.save(consulta);
         return new ConsultaDetalhamentoResponse(consulta);
+    }
+
+    public ConsultaCancelarResponse cancelar(ConsultaCancelarRequest dados) {
+        if (!consultaRepository.existsById(dados.idConsulta())) {
+            throw new ValidacaoException("Consulta não existe!");
+        }
+        if (dados.cancelamento() == null) {
+            throw new ValidacaoException("Campo modivo cancelamento deve ser preenchido");
+        }
+        return realizarCancelamento(dados);
+    }
+
+    private ConsultaCancelarResponse realizarCancelamento(ConsultaCancelarRequest dados) {
+        validadorCancelamentoConsultas.forEach(v -> v.validar(dados));
+        Consulta consulta = consultaRepository.getReferenceById(dados.idConsulta());
+        consulta.setMotivoCancelamento(dados.cancelamento());
+        consultaRepository.save(consulta);
+        return new ConsultaCancelarResponse(consulta);
     }
 
     private Medico escolherMedico(ConsultaAgendamentoRequest dados) {

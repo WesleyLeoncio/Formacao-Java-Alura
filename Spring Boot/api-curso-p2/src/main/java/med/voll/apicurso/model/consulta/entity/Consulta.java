@@ -2,6 +2,7 @@ package med.voll.apicurso.model.consulta.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
+import med.voll.apicurso.model.consulta.MotivoCancelamento;
 import med.voll.apicurso.model.medico.entity.Medico;
 import med.voll.apicurso.model.paciente.entity.Paciente;
 
@@ -25,15 +26,28 @@ public class Consulta {
 
     private LocalDateTime data;
 
+    @Enumerated(EnumType.STRING)
+    private MotivoCancelamento motivoCancelamento;
+
     public Consulta(Long id, Medico medico, Paciente paciente, LocalDateTime data) {
         this.id = id;
         this.medico = medico;
         this.paciente = paciente;
         this.data = data;
+        this.motivoCancelamento = null;
     }
 
     public Consulta() {
 
+    }
+
+
+    public MotivoCancelamento getMotivoCancelamento() {
+        return motivoCancelamento;
+    }
+
+    public void setMotivoCancelamento(MotivoCancelamento motivoCancelamento) {
+        this.motivoCancelamento = motivoCancelamento;
     }
 
     public Long getId() {

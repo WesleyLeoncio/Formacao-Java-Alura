@@ -1,8 +1,8 @@
-package med.voll.apicurso.service.validacao;
+package med.voll.apicurso.service.validacao.agendamento;
 
 
 import med.voll.apicurso.infra.exceptions.ValidacaoException;
-import med.voll.apicurso.model.agendamento.ValidadorAgendamentoDeConsulta;
+import med.voll.apicurso.model.consulta.interfaces.ValidadorAgendamentoDeConsulta;
 import med.voll.apicurso.model.consulta.request.ConsultaAgendamentoRequest;
 import med.voll.apicurso.repository.PacienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;

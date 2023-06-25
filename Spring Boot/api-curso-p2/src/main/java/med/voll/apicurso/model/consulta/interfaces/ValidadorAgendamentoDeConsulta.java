@@ -1,4 +1,4 @@
-package med.voll.apicurso.model.agendamento;
+package med.voll.apicurso.model.consulta.interfaces;
 
 import med.voll.apicurso.model.consulta.request.ConsultaAgendamentoRequest;
 
