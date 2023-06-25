@@ -1,7 +1,5 @@
 package med.voll.apicurso.service.validacao.agendamento;
 
-//TODO TESTAR
-
 import med.voll.apicurso.infra.exceptions.ValidacaoException;
 import med.voll.apicurso.model.consulta.interfaces.ValidadorAgendamentoDeConsulta;
 import med.voll.apicurso.model.consulta.request.ConsultaAgendamentoRequest;
