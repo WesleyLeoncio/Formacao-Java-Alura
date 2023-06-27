@@ -1,5 +1,6 @@
 package med.voll.apicurso.controller;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Null;
@@ -17,9 +18,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
 
-//TODO ESSA CLASS ESTÁ SEGUINDO OS REQUISISTOS QUE FORAM REQUISITADOS PELO USUARIO
 @RestController
 @RequestMapping("medicos")
+@SecurityRequirement(name = "bearer-key")
 public class MedicoController {
     final
     MedicoRepository repository;
