@@ -36,3 +36,9 @@
 - `spring.data.web.pageable.page-parameter=pagina`
 - `spring.data.web.pageable.size-parameter=tamanho`
 - `spring.data.web.sort.sort-parameter=ordem`
+
+
+### DOCUMENTAÇÃO
+
+- `http://localhost:8080/swagger-ui/index.html#/`
+- `http://localhost:8080/v3/api-docs`
