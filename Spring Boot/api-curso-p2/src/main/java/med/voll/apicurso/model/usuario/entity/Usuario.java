@@ -2,6 +2,7 @@ package med.voll.apicurso.model.usuario.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
+import med.voll.apicurso.model.usuario.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,6 +20,9 @@ public class Usuario implements UserDetails {
     private Long id;
     private String login;
     private String senha;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Usuario(Long id, String login, String senha) {
         this.id = id;
@@ -55,7 +59,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority(role.toString()));
     }
     @Override
     public String getPassword() {

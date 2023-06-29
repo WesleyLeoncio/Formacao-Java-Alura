@@ -6,7 +6,9 @@
 
 - Spring Boot
 - Docker
-- PostgresI
+- Postgres
+- Autorização - Spring Security
+- Autenticação - Spring Security
 
 ### Comandos para rodar o projeto
 - Para subir o container: docker-compose up -d

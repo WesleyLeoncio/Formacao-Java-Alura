@@ -13,6 +13,7 @@ import med.voll.apicurso.repository.MedicoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -31,6 +32,7 @@ public class MedicoController {
 
     @PostMapping
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<MedicoDetalhamentoResponse> cadastrar(@RequestBody @Valid MedicoCreatRequest medicoRequest, UriComponentsBuilder uriBuilder) {
         Medico medico = repository.save(new Medico(medicoRequest));
         MedicoDetalhamentoResponse medicoDetalhado = new MedicoDetalhamentoResponse(medico);
@@ -39,6 +41,7 @@ public class MedicoController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<Page<MedicoResponse>> litarTodos(Pageable pageable){
         Page<MedicoResponse> medicoResponsePage = repository.findAllByAtivoTrue(pageable).map(MedicoResponse::new);
         return ResponseEntity.ok(medicoResponsePage);
@@ -46,15 +49,16 @@ public class MedicoController {
 
     @PutMapping
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<MedicoDetalhamentoResponse> atualizar(@RequestBody @Valid MedicoEditRequest medicoEditRequest){
         Medico medico = repository.getReferenceById(medicoEditRequest.id());
         medico.atualizarInformacoes(medicoEditRequest);
         return ResponseEntity.ok(new MedicoDetalhamentoResponse(medico));
     }
 
-    //TODO EXCLUSÃO LOGICA
     @DeleteMapping("/{id}")
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<Null> excluir(@PathVariable Long id) {
         Medico medico = repository.getReferenceById(id);
         medico.excluir();
@@ -62,6 +66,7 @@ public class MedicoController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity<MedicoDetalhamentoResponse> detalhar(@PathVariable Long id){
         Medico medico = repository.getReferenceById(id);
         return ResponseEntity.ok(new MedicoDetalhamentoResponse(medico));
