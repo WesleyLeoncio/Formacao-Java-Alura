@@ -12,7 +12,7 @@ public class PacienteFactoryTest {
                         "paciente@email.com",
                         "61999999999",
                         "00000000000",
-                        new EnderecoFactoryTest().dadosEndereco()
+                        new EnderecoFactoryTest().dadosEnderecoRequest()
                 )
         );
     }

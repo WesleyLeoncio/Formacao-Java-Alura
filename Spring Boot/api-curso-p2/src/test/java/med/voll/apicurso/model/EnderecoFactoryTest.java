@@ -1,10 +1,17 @@
 package med.voll.apicurso.model;
 
+import med.voll.apicurso.model.endereco.entity.Endereco;
 import med.voll.apicurso.model.endereco.request.EnderecoRequest;
 
 public class EnderecoFactoryTest {
 
-    public EnderecoRequest dadosEndereco() {
+
+    public Endereco dadosEdereco(){
+        return new Endereco(dadosEnderecoRequest());
+    }
+
+
+    public EnderecoRequest dadosEnderecoRequest () {
         return new EnderecoRequest(
                 "rua teste",
                 "bairro teste",
@@ -15,5 +22,6 @@ public class EnderecoFactoryTest {
                 "52"
         );
     }
+
 
 }

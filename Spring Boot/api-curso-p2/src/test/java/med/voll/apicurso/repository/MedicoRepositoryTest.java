@@ -3,13 +3,9 @@ package med.voll.apicurso.repository;
 import med.voll.apicurso.model.MedicoFactoryTest;
 import med.voll.apicurso.model.PacienteFactoryTest;
 import med.voll.apicurso.model.consulta.entity.Consulta;
-import med.voll.apicurso.model.endereco.request.EnderecoRequest;
 import med.voll.apicurso.model.medico.Especialidade;
 import med.voll.apicurso.model.medico.entity.Medico;
-import med.voll.apicurso.model.medico.request.MedicoCreatRequest;
 import med.voll.apicurso.model.paciente.entity.Paciente;
-import med.voll.apicurso.model.paciente.request.PacienteCreatRequest;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
-
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -27,8 +22,8 @@ import java.time.temporal.TemporalAdjusters;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //TODO PARA USAR O BANCO PADRÃO
-@ActiveProfiles("test") // TODO PARA USAR O PROFILE DE TESTE
+//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //TODO PARA USAR O BANCO PADRÃO
+//@ActiveProfiles("test") // TODO PARA USAR O PROFILE DE TESTE
 class MedicoRepositoryTest {
 
     @Autowired
@@ -53,7 +48,7 @@ class MedicoRepositoryTest {
         //when ou act
         Medico medicoLivre = medicoRepository.escolherMedicoAleatorioLivreNaData(Especialidade.CARDIOLOGIA, proximaSegundaAs10);
 
-        //then ou assert
+        //then ou assert0
         assertThat(medicoLivre).isNull();
     }
 
