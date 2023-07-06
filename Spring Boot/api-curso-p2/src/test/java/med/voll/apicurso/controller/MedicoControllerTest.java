@@ -17,6 +17,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -52,13 +53,14 @@ class MedicoControllerTest {
     }
 
     @Test
-    @DisplayName("Deveria devolver codigo http 200 quando informacoes estao validas")
-    @WithMockUser
+    @DisplayName("Deveria devolver codigo http 201 quando informacoes estao validas")
+    @WithMockUser(authorities = "ROLE_ADMIN")
     void cadastrar_cenario2() throws Exception {
         MedicoFactoryTest medicoTest = new MedicoFactoryTest();
 
         MedicoDetalhamentoResponse dadosDetalhamento = medicoTest.medicoDetalhamento();
-        when(repository.save(any())).thenReturn(dadosDetalhamento);
+        when(repository.save(any())).thenReturn(medicoTest.dadosMedico());
+
         MockHttpServletResponse response = mvc.perform(post("/medicos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(dadosCadastroMedicoJson.write(
@@ -68,6 +70,7 @@ class MedicoControllerTest {
                 .andReturn().getResponse();
 
         String jsonEsperado = dadosDetalhamentoMedicoJson.write(dadosDetalhamento).getJson();
+
         assertThat(response.getStatus()).isEqualTo(HttpStatus.CREATED.value());
         assertThat(response.getContentAsString()).isEqualTo(jsonEsperado);
     }

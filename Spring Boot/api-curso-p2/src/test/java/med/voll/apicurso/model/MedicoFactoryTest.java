@@ -28,8 +28,8 @@ public class MedicoFactoryTest {
                 null,
                 "Medico Teste",
                 "medico@email.com",
-                "61999999999",
                 "123456",
+                "61999999999",
                 Especialidade.CARDIOLOGIA,
                 new EnderecoFactoryTest().dadosEdereco()
         );
