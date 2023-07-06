@@ -22,8 +22,8 @@ import java.time.temporal.TemporalAdjusters;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
-//@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //TODO PARA USAR O BANCO PADRÃO
-//@ActiveProfiles("test") // TODO PARA USAR O PROFILE DE TESTE
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE) //TODO PARA USAR O BANCO PADRÃO
+@ActiveProfiles("test") // TODO PARA USAR O PROFILE DE TESTE
 class MedicoRepositoryTest {
 
     @Autowired
