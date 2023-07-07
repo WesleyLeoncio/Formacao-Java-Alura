@@ -1,4 +1,4 @@
-# CURSO DE SPRING PARTE 1
+# CURSO DE SPRING 
 
 # API MEDICOS 
 
@@ -44,3 +44,11 @@
 
 - `http://localhost:8080/swagger-ui/index.html#/`
 - `http://localhost:8080/v3/api-docs`
+
+### Configuração de Deploy
+
+- `Na aba Maven do intellij vá até Lifecycle package Run Maven Build`
+- `Foi gerado o arquivo .jar na pasta target`
+- `java "-Dspring.profiles.active=prod" "-DDATASOURCE_URL=url_do_banco" "-DDATASOURCE_USERNAME=user_do_banco" "-DDATASOURCE_PASSWORD=password_do_banco" -jar caminho/arquivo.jar`
+- `Coomando -Dspring.profiles.active=prod define o profile que será usado`
+-  `As variaveis de ambiente -DDATASOURCE foram definidas no profile de prod`

@@ -1,3 +1,0 @@
-ALTER TABLE medicos ADD ativo SMALLINT;
-UPDATE medicos SET ativo = 1;
-ALTER TABLE medicos ALTER COLUMN ativo SET NOT NULL;
